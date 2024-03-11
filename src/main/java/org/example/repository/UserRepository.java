@@ -7,4 +7,6 @@ import reactor.core.publisher.Flux;
 public interface UserRepository extends FirestoreReactiveRepository<UserDocument> {
 
     Flux<UserDocument> findByAge(Integer age);
+
+    Flux<UserDocument> findByName(String name);
 }

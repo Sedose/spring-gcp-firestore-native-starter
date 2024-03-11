@@ -22,6 +22,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final ReactiveFirestoreTransactionManager txManager;
 
+    public Flux<RoleDocument> getUserRolesByUserName(String userName) {
+        return userRepository.findByName(userName)
+                .flatMap(it -> template.withParent(it).findAll(RoleDocument.class));
+    }
+
     public Mono<UserDocument> createUser(UserCreateRequestBody requestBody) {
         DefaultTransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
         transactionDefinition.setReadOnly(false);
@@ -54,8 +59,6 @@ public class UserService {
                 .flatMap(userRepository::delete)
                 .then();
     }
-
-
 
     public Mono<UserDocument> createUserUnsafeWithoutTransaction(UserCreateRequestBody requestBody) {
         var user = UserDocument.builder()
