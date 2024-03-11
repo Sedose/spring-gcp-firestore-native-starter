@@ -1,7 +1,8 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.document.User;
+import org.example.document.UserDocument;
+import org.example.request.body.UserCreateRequestBody;
 import org.example.service.UserService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,22 +22,22 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public Flux<User> getAllUsers() {
+    public Flux<UserDocument> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping(params = "age")
-    public Flux<User> getAllUsersByAge(Integer age) {
+    public Flux<UserDocument> getAllUsersByAge(Integer age) {
         return userService.getAllUsersByAge(age);
     }
 
     @PostMapping
-    public Mono<User> createNewUser(User user) {
+    public Mono<UserDocument> createNewUser(@RequestBody UserCreateRequestBody user) {
         return userService.createUser(user);
     }
 
     @PutMapping
-    public Mono<User> updateUser(@RequestBody User user) {
+    public Mono<UserDocument> updateUser(@RequestBody UserDocument user) {
         return userService.updateUser(user);
     }
 
