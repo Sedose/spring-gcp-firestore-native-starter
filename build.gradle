@@ -18,7 +18,7 @@ repositories {
 dependencies {
     implementation(
             'org.springframework.boot:spring-boot-starter-webflux',
-            'com.google.cloud:google-cloud-firestore:3.18.0',
+            'com.google.cloud:spring-cloud-gcp-starter-firestore:5.0.4',
             'com.google.cloud:spring-cloud-gcp-starter-data-firestore:5.0.4',
             'org.projectlombok:lombok:1.18.30',
     )

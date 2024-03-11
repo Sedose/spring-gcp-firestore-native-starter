@@ -2,12 +2,15 @@ package org.example.service;
 
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.spring.data.firestore.FirestoreTemplate;
+import com.google.cloud.spring.data.firestore.transaction.ReactiveFirestoreTransactionManager;
 import lombok.RequiredArgsConstructor;
 import org.example.document.RoleDocument;
 import org.example.document.UserDocument;
 import org.example.repository.UserRepository;
 import org.example.request.body.UserCreateRequestBody;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.reactive.TransactionalOperator;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -17,10 +20,26 @@ public class UserService {
     private final Firestore firestore;
     private final FirestoreTemplate template;
     private final UserRepository userRepository;
+    private final ReactiveFirestoreTransactionManager txManager;
 
-//    public Flux<User> query() {
-//        template.withParent()
-//    }
+    public Mono<UserDocument> createUser(UserCreateRequestBody requestBody) {
+        DefaultTransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
+        transactionDefinition.setReadOnly(false);
+        TransactionalOperator operator = TransactionalOperator.create(this.txManager, transactionDefinition);
+        var user = UserDocument.builder()
+                .name(requestBody.name())
+                .age(requestBody.age())
+                .phoneNumbers(requestBody.phoneNumbers())
+                .build();
+        var rolesFlux = Flux.fromStream(
+                requestBody.roles().stream()
+                        .map(it -> RoleDocument.builder().name(it.name()).build())
+        );
+        return userRepository.save(user)
+                .flatMap(savedUser -> template.withParent(savedUser).saveAll(rolesFlux)
+                        .then(Mono.just(savedUser))
+                ).as(operator::transactional);
+    }
 
     public Flux<UserDocument> getAllUsers() {
         return userRepository.findAll();
@@ -36,7 +55,9 @@ public class UserService {
                 .then();
     }
 
-    public Mono<UserDocument> createUser(UserCreateRequestBody requestBody) {
+
+
+    public Mono<UserDocument> createUserUnsafeWithoutTransaction(UserCreateRequestBody requestBody) {
         var user = UserDocument.builder()
                 .name(requestBody.name())
                 .age(requestBody.age())
