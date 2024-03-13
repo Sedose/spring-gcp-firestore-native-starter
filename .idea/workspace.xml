@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Add transaction">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/document/RoleDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/document/RoleDocument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" afterDir="false" />
+    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Find user roles as sub collection">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/document/UserName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/document/UserDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/document/UserDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/request/body/UserCreateRequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/request/body/UserCreateRequestBody.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +59,7 @@
     "Application.Main.executor": "Coverage",
     "Gradle.Build SpringGCPFirestore.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
-    "Gradle.SpringGCPFirestore [:Main.main()].executor": "Debug",
+    "Gradle.SpringGCPFirestore [:Main.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -79,7 +78,7 @@
       <module name="SpringGCPFirestore.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.*" />
+          <option name="PATTERN" value="org.example.document.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -141,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710167112989</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Find user roles as sub collection">
+      <option name="closed" value="true" />
+      <created>1710172101445</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710172101445</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -158,7 +165,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update" />
     <MESSAGE value="Add transaction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add transaction" />
+    <MESSAGE value="Find user roles as sub collection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Find user roles as sub collection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -167,6 +175,11 @@
           <properties class="io.grpc.StatusRuntimeException" package="io.grpc" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

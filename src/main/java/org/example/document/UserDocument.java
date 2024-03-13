@@ -21,7 +21,7 @@ public class UserDocument {
     @DocumentId
     private String documentId;
     @PropertyName("name")
-    private String name;
+    private UserName name;
     @PropertyName("age")
     private Integer age;
     @PropertyName("phoneNumbers")
