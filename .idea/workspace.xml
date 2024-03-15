@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Update .gitignore">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/util/ApiFutureUtil.java" afterDir="false" />
+    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Collection group query">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/document/UserDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/document/UserDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/request/body/UserCreateRequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/request/body/UserCreateRequestBody.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710344199418</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Collection group query">
+      <option name="closed" value="true" />
+      <created>1710503269630</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1710503269630</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -204,7 +214,8 @@
     <MESSAGE value="Find user roles as sub collection" />
     <MESSAGE value="Use complex document field" />
     <MESSAGE value="Update .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update .gitignore" />
+    <MESSAGE value="Collection group query" />
+    <option name="LAST_COMMIT_MESSAGE" value="Collection group query" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -213,11 +224,6 @@
           <properties class="io.grpc.StatusRuntimeException" package="io.grpc" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

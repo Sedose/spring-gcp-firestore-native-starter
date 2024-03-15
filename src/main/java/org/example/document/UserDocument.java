@@ -22,6 +22,8 @@ public class UserDocument {
     private String documentId;
     @PropertyName("name")
     private UserName name;
+    @PropertyName("name")
+    private String favoritePetName;
     @PropertyName("age")
     private Integer age;
     @PropertyName("phoneNumbers")

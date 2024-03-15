@@ -38,6 +38,11 @@ public class UserController {
         return userService.getAllUsersByAge(age);
     }
 
+    @GetMapping(params = { "age", "favoritePetName"} )
+    public Flux<UserDocument> getAllUsersByAgeAndName(Integer age, String favoritePetName) {
+        return userService.getAllUsersByAgeAndName(age, favoritePetName);
+    }
+
     @GetMapping("/{userName}/roles")
     public Flux<RoleDocument> getUserRolesByUserName(@PathVariable("userName") String userName) {
         return userService.getUserRolesByUserName(userName);

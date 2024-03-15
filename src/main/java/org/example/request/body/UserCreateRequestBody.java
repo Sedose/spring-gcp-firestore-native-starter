@@ -7,6 +7,7 @@ import java.util.List;
 public record UserCreateRequestBody(
         UserName name,
         Integer age,
+        String favoritePetName,
         List<String> phoneNumbers,
         List<RoleRequestBody> roles
 ) {

@@ -1,6 +1,9 @@
 package org.example.service;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.spring.data.firestore.FirestoreTemplate;
 import com.google.cloud.spring.data.firestore.transaction.ReactiveFirestoreTransactionManager;
 import lombok.RequiredArgsConstructor;
@@ -22,11 +25,22 @@ import java.util.function.Function;
 public class UserService {
     private final Firestore firestore;
     private final FirestoreTemplate template;
-    private final UserRepository userRepository;
-    private final ReactiveFirestoreTransactionManager txManager;
+    private final UserRepository repository;
+    private final ReactiveFirestoreTransactionManager transactionManager;
+
+    public Flux<UserDocument> getAllUsersByAgeAndName(Integer age, String favoritePetName) {
+        CollectionReference users = firestore.collection("users");
+        ApiFuture<QuerySnapshot> future = users
+                .whereEqualTo("age", age)
+                .whereEqualTo("favoritePetName", favoritePetName)
+                .get();
+        return ApiFutureUtil.toMono(future)
+                .map(it -> it.toObjects(UserDocument.class))
+                .flatMapMany(Flux::fromIterable);
+    }
 
     public Flux<RoleDocument> getUserRolesByUserName(String userName) {
-        return userRepository.findByName(userName)
+        return repository.findByName(userName)
                 .flatMap(it -> template.withParent(it).findAll(RoleDocument.class));
     }
 
@@ -40,9 +54,10 @@ public class UserService {
     public Mono<UserDocument> createUser(UserCreateRequestBody requestBody) {
         DefaultTransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
         transactionDefinition.setReadOnly(false);
-        TransactionalOperator operator = TransactionalOperator.create(this.txManager, transactionDefinition);
+        TransactionalOperator operator = TransactionalOperator.create(this.transactionManager, transactionDefinition);
         var user = UserDocument.builder()
                 .name(requestBody.name())
+                .favoritePetName(requestBody.favoritePetName())
                 .age(requestBody.age())
                 .phoneNumbers(requestBody.phoneNumbers())
                 .build();
@@ -50,23 +65,23 @@ public class UserService {
                 requestBody.roles().stream()
                         .map(it -> RoleDocument.builder().name(it.name()).build())
         );
-        return userRepository.save(user)
+        return repository.save(user)
                 .flatMap(savedUser -> template.withParent(savedUser).saveAll(rolesFlux)
                         .then(Mono.just(savedUser))
                 ).as(operator::transactional);
     }
 
     public Flux<UserDocument> getAllUsers() {
-        return userRepository.findAll();
+        return repository.findAll();
     }
 
     public Flux<UserDocument> getAllUsersByAge(Integer age) {
-        return userRepository.findByAge(age);
+        return repository.findByAge(age);
     }
 
     public Mono<Void> deleteUsersByAge(Integer age) {
-        return userRepository.findByAge(age)
-                .flatMap(userRepository::delete)
+        return repository.findByAge(age)
+                .flatMap(repository::delete)
                 .then();
     }
 
@@ -80,7 +95,7 @@ public class UserService {
                 requestBody.roles().stream()
                         .map(it -> RoleDocument.builder().name(it.name()).build())
         );
-        return userRepository.save(user)
+        return repository.save(user)
                 .flatMap(savedUser ->
                         template.withParent(savedUser).saveAll(rolesFlux)
                                 .then(Mono.just(savedUser))
@@ -88,7 +103,8 @@ public class UserService {
     }
 
 
+    // TODO implement full
     public Mono<UserDocument> updateUser(UserDocument user) {
-        return userRepository.save(user);
+        return repository.save(user);
     }
 }
