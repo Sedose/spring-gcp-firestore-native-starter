@@ -23,14 +23,14 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/roles")
-    public Flux<RoleDocument> getAllUsersRoles() {
-        return userService.getAllUsersRoles();
-    }
-
     @GetMapping
     public Flux<UserDocument> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @GetMapping("/roles")
+    public Flux<RoleDocument> getAllUsersRoles() {
+        return userService.getAllUsersRoles();
     }
 
     @GetMapping(params = "age")
@@ -38,9 +38,14 @@ public class UserController {
         return userService.getAllUsersByAge(age);
     }
 
-    @GetMapping(params = { "age", "favoritePetName"} )
-    public Flux<UserDocument> getAllUsersByAgeAndName(Integer age, String favoritePetName) {
-        return userService.getAllUsersByAgeAndName(age, favoritePetName);
+    // TODO Implement PhoneNumberContains part
+    @GetMapping(params = { "age", "favoritePetName", "phoneNumber"} )
+    public Flux<UserDocument> getAllUsersByAgeAndNameAndPhoneNumberContains(
+            Integer age,
+            String favoritePetName,
+            String phoneNumber
+    ) {
+        return userService.getAllUsersByAgeAndName(age, favoritePetName, phoneNumber);
     }
 
     @GetMapping("/{userName}/roles")
@@ -51,6 +56,11 @@ public class UserController {
     @PostMapping
     public Mono<UserDocument> createNewUser(@RequestBody UserCreateRequestBody user) {
         return userService.createUser(user);
+    }
+
+    @PostMapping("/random-generate")
+    public Mono<UserDocument> randomGenerate() {
+        return userService.randomGenerate();
     }
 
     @PutMapping
