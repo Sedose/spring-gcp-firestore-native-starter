@@ -8,11 +8,14 @@ import org.example.document.RoleDocument;
 import org.example.document.UserDocument;
 import org.example.repository.UserRepository;
 import org.example.request.body.UserCreateRequestBody;
+import org.example.util.ApiFutureUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.reactive.TransactionalOperator;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +28,13 @@ public class UserService {
     public Flux<RoleDocument> getUserRolesByUserName(String userName) {
         return userRepository.findByName(userName)
                 .flatMap(it -> template.withParent(it).findAll(RoleDocument.class));
+    }
+
+    public Flux<RoleDocument> getAllUsersRoles() {
+        return ApiFutureUtil.toMono(firestore.collectionGroup("roles").get())
+                .map(it -> Flux.fromIterable(it.getDocuments()))
+                .flatMapMany(Function.identity())
+                .map(it -> it.toObject(RoleDocument.class));
     }
 
     public Mono<UserDocument> createUser(UserCreateRequestBody requestBody) {

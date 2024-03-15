@@ -23,6 +23,11 @@ public class UserController {
 
     private final UserService userService;
 
+    @GetMapping("/roles")
+    public Flux<RoleDocument> getAllUsersRoles() {
+        return userService.getAllUsersRoles();
+    }
+
     @GetMapping
     public Flux<UserDocument> getAllUsers() {
         return userService.getAllUsers();

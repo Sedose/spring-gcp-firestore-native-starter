@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Find user roles as sub collection">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/document/UserName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/document/UserDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/document/UserDocument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/request/body/UserCreateRequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/request/body/UserCreateRequestBody.java" afterDir="false" />
+    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Update .gitignore">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/util/ApiFutureUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +47,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="Use complex document field" />
+        <option name="rewordedMessage" value="Use complex document field" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="d99946845401fae2f9038244d92158f2ec997f9a" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -59,7 +70,7 @@
     "Application.Main.executor": "Coverage",
     "Gradle.Build SpringGCPFirestore.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
-    "Gradle.SpringGCPFirestore [:Main.main()].executor": "Run",
+    "Gradle.SpringGCPFirestore [:Main.main()].executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -96,6 +107,7 @@
     <attachedChunks>
       <set>
         <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-9b16c6e2" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
       </set>
     </attachedChunks>
   </component>
@@ -148,7 +160,31 @@
       <option name="project" value="LOCAL" />
       <updated>1710172101445</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Use complex document field">
+      <option name="closed" value="true" />
+      <created>1710343703003</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1710343703003</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Use complex document field">
+      <option name="closed" value="true" />
+      <created>1710343708626</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1710343708626</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update .gitignore">
+      <option name="closed" value="true" />
+      <created>1710344199418</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1710344199418</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,7 +202,9 @@
     <MESSAGE value="Update" />
     <MESSAGE value="Add transaction" />
     <MESSAGE value="Find user roles as sub collection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Find user roles as sub collection" />
+    <MESSAGE value="Use complex document field" />
+    <MESSAGE value="Update .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update .gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -177,7 +215,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java</url>
-          <line>37</line>
+          <line>42</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
