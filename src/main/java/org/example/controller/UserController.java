@@ -39,13 +39,13 @@ public class UserController {
     }
 
     // TODO Implement PhoneNumberContains part
-    @GetMapping(params = { "age", "favoritePetName", "phoneNumber"} )
-    public Flux<UserDocument> getAllUsersByAgeAndNameAndPhoneNumberContains(
-            Integer age,
+    @GetMapping(params = { "minAge", "favoritePetName", "phoneNumber"} )
+    public Flux<UserDocument> getAllUsersByAgeMinAndNameAndPhoneNumberContains(
+            Integer minAge,
             String favoritePetName,
             String phoneNumber
     ) {
-        return userService.getAllUsersByAgeAndName(age, favoritePetName, phoneNumber);
+        return userService.getAllUsersByAgeMinAndName(minAge, favoritePetName, phoneNumber);
     }
 
     @GetMapping("/{userName}/roles")

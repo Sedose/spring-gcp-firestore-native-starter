@@ -33,10 +33,10 @@ public class UserService {
     private final UserRepository repository;
     private final ReactiveFirestoreTransactionManager transactionManager;
 
-    public Flux<UserDocument> getAllUsersByAgeAndName(Integer age, String favoritePetName, String phoneNumber) {
+    public Flux<UserDocument> getAllUsersByAgeMinAndName(Integer age, String favoritePetName, String phoneNumber) {
         CollectionReference users = firestore.collection("users");
         ApiFuture<QuerySnapshot> future = users
-                .whereEqualTo("age", age)
+                .whereGreaterThan("age", age)
                 .whereEqualTo("favoritePetName", favoritePetName)
                 .whereArrayContains("phoneNumbers", phoneNumber)
                 .get();

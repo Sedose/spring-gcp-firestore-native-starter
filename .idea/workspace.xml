@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Use compound query">
+    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Add array contains to compound query">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" afterDir="false" />
@@ -45,6 +45,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitRewordedCommitMessages">
     <option name="commitMessagesMapping">
@@ -55,6 +56,9 @@
     </option>
     <option name="currentCommit" value="1" />
     <option name="onto" value="d99946845401fae2f9038244d92158f2ec997f9a" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -69,7 +73,7 @@
     "Application.Main.executor": "Coverage",
     "Gradle.Build SpringGCPFirestore.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
-    "Gradle.SpringGCPFirestore [:Main.main()].executor": "Debug",
+    "Gradle.SpringGCPFirestore [:Main.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -199,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710514209816</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add array contains to compound query">
+      <option name="closed" value="true" />
+      <created>1710520912531</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1710520912531</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -221,7 +233,8 @@
     <MESSAGE value="Update .gitignore" />
     <MESSAGE value="Collection group query" />
     <MESSAGE value="Use compound query" />
-    <option name="LAST_COMMIT_MESSAGE" value="Use compound query" />
+    <MESSAGE value="Add array contains to compound query" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add array contains to compound query" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
