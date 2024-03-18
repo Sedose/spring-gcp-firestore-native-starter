@@ -33,12 +33,16 @@ public class UserController {
         return userService.getAllUsersRoles();
     }
 
+    @GetMapping("/roles/count")
+    public Flux<Long> countRoles() {
+        return userService.countRoles();
+    }
+
     @GetMapping(params = "age")
     public Flux<UserDocument> getAllUsersByAge(Integer age) {
         return userService.getAllUsersByAge(age);
     }
 
-    // TODO Implement PhoneNumberContains part
     @GetMapping(params = { "minAge", "favoritePetName", "phoneNumber"} )
     public Flux<UserDocument> getAllUsersByAgeMinAndNameAndPhoneNumberContains(
             Integer minAge,

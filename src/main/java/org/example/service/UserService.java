@@ -1,8 +1,11 @@
 package org.example.service;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.AggregateQuery;
+import com.google.cloud.firestore.AggregateQuerySnapshot;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.spring.data.firestore.FirestoreTemplate;
 import com.google.cloud.spring.data.firestore.transaction.ReactiveFirestoreTransactionManager;
@@ -141,8 +144,15 @@ public class UserService {
     }
 
 
-    // TODO implement full
     public Mono<UserDocument> updateUser(UserDocument user) {
         return repository.save(user);
+    }
+
+    public Flux<Long> countRoles() {
+        Query query = firestore.collectionGroup("roles");
+        AggregateQuery countQuery = query.count();
+        return ApiFutureUtil.toMono(countQuery.get())
+                .map(AggregateQuerySnapshot::getCount)
+                .flux();
     }
 }
