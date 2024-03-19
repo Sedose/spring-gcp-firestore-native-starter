@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "ed797a0b-8681-4ce0-9c71-92995bb116c0",
+		"name": "Spring Firestore example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13799350",
+		"_collection_link": "https://galactic-flare-304939.postman.co/workspace/Common~0329fdcc-5176-4fe3-81b9-2cda95552b96/collection/13799350-ed797a0b-8681-4ce0-9c71-92995bb116c0?action=share&source=collection_link&creator=13799350"
+	},
+	"item": [
+		{
+			"name": "Get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "24",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users roles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/roles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"roles"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "24",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users by user favoritePetName and age",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users?favoritePetName=Jack&minAge=15&phoneNumber=0956859021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "favoritePetName",
+							"value": "Jack"
+						},
+						{
+							"key": "minAge",
+							"value": "15"
+						},
+						{
+							"key": "phoneNumber",
+							"value": "0956859021"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": {\n        \"first\": \"Maverick\",\n        \"last\": \"Grey\"\n    },\n    \"favoritePetName\": \"Jacki\",\n    \"age\": \"27\",\n    \"phoneNumbers\": [\"0956859021\", \"0956859022\", \"0956859023\"],\n    \"roles\": [{\"name\": \"User\"}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users?age=24&name=Sam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "24"
+						},
+						{
+							"key": "name",
+							"value": "Sam"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new user with random data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": {\n        \"first\": \"Maverick\",\n        \"last\": \"Grey\"\n    },\n    \"favoritePetName\": \"Jacki\",\n    \"age\": \"27\",\n    \"phoneNumbers\": [\"0956859021\", \"0956859022\", \"0956859023\"],\n    \"roles\": [{\"name\": \"User\"}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/random-generate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"random-generate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"documentId\": \"XsP6RtlBYfoyl1ciz8zj\",\n    \"name\": \"Samuel\",\n    \"age\": \"28\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "24",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Sam",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete by age",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users?age=24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "24"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
