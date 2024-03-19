@@ -113,7 +113,13 @@ public class UserService {
     }
 
     public Flux<UserDocument> getAllUsers() {
-        return repository.findAll();
+        var future = firestore.collection("users")
+                .orderBy("name.first")
+                .orderBy("age")
+                .get();
+        return ApiFutureUtil.toMono(future)
+                .map(it -> it.toObjects(UserDocument.class))
+                .flatMapMany(Flux::fromIterable);
     }
 
     public Flux<UserDocument> getAllUsersByAge(Integer age) {
