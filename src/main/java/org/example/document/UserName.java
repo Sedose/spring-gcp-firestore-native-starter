@@ -14,4 +14,12 @@ import lombok.Setter;
 public class UserName {
     private String first;
     private String last;
+
+    @Override
+    public String toString() {
+        return "UserName{" +
+                "first='" + first + '\'' +
+                ", last='" + last + '\'' +
+                '}';
+    }
 }

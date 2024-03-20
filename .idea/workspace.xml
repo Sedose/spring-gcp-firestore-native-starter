@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Add array contains to compound query">
+    <list default="true" id="51272667-3008-4f48-b7d1-8a5b9b93a5be" name="Changes" comment="Add Blockhound, implement realtime listener">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/config/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/gateway/PubsubOutboundGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,15 +54,19 @@
   <component name="GitRewordedCommitMessages">
     <option name="commitMessagesMapping">
       <RewordedCommitMessageMapping>
-        <option name="originalMessage" value="Use complex document field" />
-        <option name="rewordedMessage" value="Use complex document field" />
+        <option name="originalMessage" value="Provide count all roles endpoint" />
+        <option name="rewordedMessage" value="Provide count all roles endpoint" />
       </RewordedCommitMessageMapping>
     </option>
     <option name="currentCommit" value="1" />
-    <option name="onto" value="d99946845401fae2f9038244d92158f2ec997f9a" />
+    <option name="onto" value="fc8a1006ce903b0cb85bfc237ba85b506aa267d0" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="showPreview" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -73,12 +81,16 @@
     "Application.Main.executor": "Coverage",
     "Gradle.Build SpringGCPFirestore.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
-    "Gradle.SpringGCPFirestore [:Main.main()].executor": "Run",
+    "Gradle.SpringGCPFirestore [:Main.main()].executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/edhar_avuzi/IdeaProjects/SpringGCPFirestore"
+    "last_opened_file_path": "/Users/edhar_avuzi/IdeaProjects/SpringGCPFirestore",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "terminal"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -88,8 +100,12 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="GOOGLE_CLOUD_PROJECT" value="thinking-land-416309" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="SpringGCPFirestore.main" />
+      <option name="VM_PARAMETERS" value="-XX:+EnableDynamicAgentLoading" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.document.*" />
@@ -100,6 +116,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/zsh" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -109,6 +140,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-8336523bb0d9-301ddabe" />
         <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-9b16c6e2" />
         <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
       </set>
@@ -211,7 +243,55 @@
       <option name="project" value="LOCAL" />
       <updated>1710520912531</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add request that require compound index to support compound query">
+      <option name="closed" value="true" />
+      <created>1710763254951</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1710763254951</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Provide count all roles endpoint">
+      <option name="closed" value="true" />
+      <created>1710774745911</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1710774745911</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Provide count all roles endpoint">
+      <option name="closed" value="true" />
+      <created>1710774781644</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1710774781644</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add order by">
+      <option name="closed" value="true" />
+      <created>1710837728937</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1710837728937</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add Postman collection">
+      <option name="closed" value="true" />
+      <created>1710843385051</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1710843385051</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add Blockhound, implement realtime listener">
+      <option name="closed" value="true" />
+      <created>1710938814553</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1710938814553</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -234,7 +314,12 @@
     <MESSAGE value="Collection group query" />
     <MESSAGE value="Use compound query" />
     <MESSAGE value="Add array contains to compound query" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add array contains to compound query" />
+    <MESSAGE value="Add request that require compound index to support compound query" />
+    <MESSAGE value="Provide count all roles endpoint" />
+    <MESSAGE value="Add order by" />
+    <MESSAGE value="Add Postman collection" />
+    <MESSAGE value="Add Blockhound, implement realtime listener" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Blockhound, implement realtime listener" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -243,6 +328,11 @@
           <properties class="io.grpc.StatusRuntimeException" package="io.grpc" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/service/UserService.java</url>
+          <line>188</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

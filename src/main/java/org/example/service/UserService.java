@@ -5,6 +5,7 @@ import com.google.cloud.firestore.AggregateQuery;
 import com.google.cloud.firestore.AggregateQuerySnapshot;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.FirestoreException;
 import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.spring.data.firestore.FirestoreTemplate;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.document.RoleDocument;
 import org.example.document.UserDocument;
 import org.example.document.UserName;
+import org.example.gateway.PubsubOutboundGateway;
 import org.example.repository.UserRepository;
 import org.example.request.body.UserCreateRequestBody;
 import org.example.util.ApiFutureUtil;
@@ -22,6 +24,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
@@ -35,6 +38,7 @@ public class UserService {
     private final FirestoreTemplate template;
     private final UserRepository repository;
     private final ReactiveFirestoreTransactionManager transactionManager;
+    private final PubsubOutboundGateway messagingGateway;
 
     public Flux<UserDocument> getAllUsersByAgeMinAndName(Integer age, String favoritePetName, String phoneNumber) {
         CollectionReference users = firestore.collection("users");
@@ -160,5 +164,29 @@ public class UserService {
         return ApiFutureUtil.toMono(countQuery.get())
                 .map(AggregateQuerySnapshot::getCount)
                 .flux();
+    }
+
+    @PostConstruct
+    public void subscribeToFirestoreUpdates() {
+        var listenerRegistration = firestore.collection("users")
+                .addSnapshotListener(this::actOnCollectionChanges);
+        Thread hook = new Thread(listenerRegistration::remove);
+        Runtime.getRuntime().addShutdownHook(hook);
+    }
+
+    private void actOnCollectionChanges(QuerySnapshot snapshots, FirestoreException error) {
+        if (error != null) {
+            System.err.println("Listen failed:" + error);
+            return;
+        }
+
+        if (snapshots != null) {
+            var changedUsersNames = snapshots.getDocumentChanges()
+                    .stream()
+                    .map(it -> it.getDocument().toObject(UserDocument.class).getName())
+                    .toList();
+            System.out.println(changedUsersNames);
+            messagingGateway.sendToPubsub(changedUsersNames.toString());
+        }
     }
 }
