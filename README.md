@@ -1,4 +1,6 @@
 This repository presents usage of libraries to manage data in Firestore from Spring Boot app.
+The app publishes messages to PubSub when `users` Firestore collection is changed.
+
 # To run:
 1. Either
 * use existing compute engine service account  
